@@ -17,9 +17,13 @@ Page({
   onShareAppMessage: function () {
     var that = this
     return {
-      title: '我收集的群笑话，这个可以笑一年',
+      title: '我收集的笑话，这个可以笑一年',
       path: '/pages/comment/index?id='+that.data.id,
       success: function(res) {
+         WXRequest({
+          url:'https://jsjoke.net/api/share',
+          method:'post',
+        })
         // 分享成功
       },
       fail: function(res) {
@@ -66,6 +70,19 @@ Page({
     var id = this.data.jokes[0]._id
     var content = e.detail.value.content
     
+    if (!content){
+        wx.showLoading({
+          title:"请填写内容",
+          icon:'success',
+          duration:1000
+        })
+        return ;
+    }
+    wx.showLoading({
+          title:"评论已经发布",
+          icon:'success',
+          duration:1000
+        })
     var that = this
     
     WXRequest({

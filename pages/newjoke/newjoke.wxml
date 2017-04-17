@@ -3,7 +3,7 @@
     <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="写一个笑话" style="height: 6.6em" name="content" />
+                    <textarea class="weui-textarea" placeholder="写一个笑话" style="height: 6.6em" name="content"  maxlength="-1" />
                     
                 </view>
             </view>

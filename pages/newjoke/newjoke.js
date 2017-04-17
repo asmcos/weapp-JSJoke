@@ -8,11 +8,7 @@ Page({
     userInfo: {}
   },
   bindFormSubmit: function(e) {
-    wx.showToast({
-      title: '正在发送，请稍后',
-      icon: 'success',
-      duration: 2000
-    })
+ 
 
     var content = e.detail.value.content
     
@@ -25,6 +21,21 @@ Page({
     }
     console.log(content)
     
+    if (!content){
+        wx.showLoading({
+          title:"请填写内容",
+          icon:'success',
+          duration:1000
+        })
+        return ;
+    }
+
+    wx.showToast({
+      title: '正在发送，请稍后',
+      icon: 'success',
+      duration: 2000
+    })
+
     WXRequest({
       url:'https://jsjoke.net/api/jokes',
       method:'POST',

@@ -46,7 +46,8 @@
                       <template is="wxParse" data="{{wxParseData:item}}"/>
                     </view> 
 
-                      <view class="weui-form-preview__ft">
+
+                      <view class="weui-form-preview__ft" wx:if="{{jokes[index].comments}}">
                        <navigator  data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindjoke">
                        👍  {{jokes[index].joke}}</navigator>
                        <navigator data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindcomment">评论</navigator>

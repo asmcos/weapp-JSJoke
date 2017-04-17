@@ -20,14 +20,15 @@
                     
                 </view>
                 <view class="weui-cell__bd">
-                    <view>{{jokes[index].author[0].nickname||jokes[index].author[0].username}}</view>
+                    <view>{{jokes[index].author[0].nickname||jokes[index].author[0].username}}   {{jokes[index].author[0].level?'('+jokes[index].author[0].level+')':''}}</view>
                     <view style="font-size: 13px;color: #888888;">{{jokes[index].createdate}}</view>
                     <!-- jokes content -->
                     <view style="margin-top:10px; margin-bottom:10px; line-height:150%;">
                       <template is="wxParse" data="{{wxParseData:item}}"/>
                     </view> 
 
-                      <view class="weui-form-preview__ft">
+
+                      <view class="weui-form-preview__ft" wx:if="{{jokes[index].comments}}">
                        <navigator  data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindjoke">
                        👍  {{jokes[index].joke}}</navigator>
                        <navigator data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindcomment">评论</navigator>
@@ -36,7 +37,7 @@
                      </view> <!-- preview__ft -->
 
                      <!--comment-->
-                     <view wx:for="{{jokes[index].comments}}" wx:for-index="cinx" wx:for-item="c" wx:key="" >
+                      <view wx:for="{{jokes[index].comments}}" wx:for-index="cinx" wx:for-item="c" wx:key="" >
                      <view class="triangle-up" style="margin-left:15px;" wx:if="{{cinx===0}}"></view>
                      <view class="comment"> <font class="comment_name">{{c.author.nickname||c.author.username}}:</font><font class="comment_contents">{{c.content}}</font></view>
                      </view>
