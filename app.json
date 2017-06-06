@@ -4,15 +4,29 @@
     "pages/comment/index",
     "pages/my/my",
     "pages/newjoke/newjoke",
+    "pages/find/find",
+    "pages/sort/user",
+    "pages/video/play",
     "pages/logs/logs"
   ],
   "tabBar":{
     "selectedColor":"#3cc51f",
     "list":[{
       "pagePath":"pages/index/index",
+      "iconPath":"/images/graycomment.png",
+      "selectedIconPath":"/images/comment.png",
       "text":"Top20"
-    },{
+    },
+    {
+      "pagePath":"pages/find/find",
+      "iconPath":"/images/grayfind.png",
+      "selectedIconPath":"/images/find.png",
+      "text":"发现"
+    },
+    {
       "pagePath":"pages/my/my",
+      "iconPath":"/images/mine.png",
+      "selectedIconPath":"/images/mine_2.png",
       "text":"我的"
     }]
 

@@ -12,13 +12,18 @@ Page({
     inputval:"",
     contents:{},
     id:null,
+    video:0,
     userInfo: {}
   },
   onShareAppMessage: function () {
     var that = this
+    var isVideo = ""
+    if (that.data.video){
+      isVideo="&video=1"
+    }
     return {
       title: '我收集的笑话，这个可以笑一年',
-      path: '/pages/comment/index?id='+that.data.id,
+      path: '/pages/comment/index?id='+that.data.id + isVideo,
       success: function(res) {
          WXRequest({
           url:'https://jsjoke.net/api/share',
@@ -35,6 +40,11 @@ Page({
     var id = e.currentTarget.dataset.id
     var index = e.currentTarget.dataset.index
     var that = this
+
+   if (app.setJoke(id + 'joke')){
+      return ;
+    }
+
     wx.request({
       url:'https://jsjoke.net/api/jokes/' + id + '?joke=1',
       success: function (res){
@@ -50,6 +60,9 @@ Page({
     var id = e.currentTarget.dataset.id
     var index = e.currentTarget.dataset.index
     var that = this
+    if (app.setJoke(id + 'unjoke')){
+      return ;
+    }
     wx.request({
       url:'https://jsjoke.net/api/jokes/' + id + '?unjoke=1',
       success: function (res){
@@ -109,16 +122,34 @@ Page({
     console.log('onLoad')
 
     var id = option.id
+    var video = option.video
     var that = this
     that.data.id = id
     //调用应用实例的方法获取全局数据
 
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      that.setData({
-        userInfo:userInfo
-      })
+    that.setData({
+      video: video
     })
+    app.getUserInfo(
+      function(userInfo){ //success
+      //更新数据
+        that.setData({
+          userInfo:userInfo
+        })
+      },
+      function(){ //fail
+       
+          wx.showModal({
+            title:'集思笑话',
+            content:'您可能未授权,无法评论',
+            success: function(res){
+              
+            }
+          })
+        
+    }) // getUserInfo
+
+    
 
     wx.request({
       url:'https://jsjoke.net/api/jokes/' + id,

@@ -1,0 +1,2 @@
+/* pages/video/play.wxss */
+@import "../../weui-wxss/style/weui.wxss"

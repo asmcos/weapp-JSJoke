@@ -19,7 +19,6 @@ Page({
     for (var i =0 ;i <images.length;i++){
       content +='<img src="' + images[i] +'" >'
     }
-    console.log(content)
     
     if (!content){
         wx.showLoading({
@@ -29,6 +28,7 @@ Page({
         })
         return ;
     }
+
 
     wx.showToast({
       title: '正在发送，请稍后',
@@ -73,11 +73,24 @@ Page({
   },
   onLoad: function (){
     var that = this
+
     app.getUserInfo(function(userInfo){
       //更新数据
       that.setData({
         userInfo:userInfo
       })
     })
+
+    if(app.getUserLogin()===''){
+        wx.showModal({
+          title:'集思笑话',
+          content:'您可能授权,发不了笑话',
+          success: function(res){
+            wx.switchTab({
+              url: '../index/index'
+            })
+          }
+        })
+      } // if app.getUserLogin
   }
 })

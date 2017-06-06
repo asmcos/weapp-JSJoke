@@ -1,0 +1,20 @@
+<!--pages/sort/user.wxml-->
+<view class="page">
+<scroll-view scroll-y="true">
+    <view wx:for="{{userlist}}" wx:for-item="user" wx:for-index="index" wx:key="" >
+            <view class="graySpace"></view>
+            <view class="item-avatar-xs">
+                <image src="{{user.avatar}}" />
+                <view style="padding-left:10px;min-width:60%;">
+                    <text class="title comment_name">{{user.nickname||user.username}}</text>
+                            
+                    <text class="title" style="margin-left:30px;">({{user.level}})</text>
+                </view>
+                <view style="margin-left:30px;background:#1296db;border-radius:80px; display:table-cell;text-align:center;color:#fff;display:inline-block;min-width:32px;">
+                    <text class="title">{{index+1}}</text>
+                </view>
+            </view>
+    </view>
+</scroll-view>
+
+</view>

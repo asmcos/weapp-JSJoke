@@ -17,9 +17,7 @@
 .page__hd {
     padding: 40px;
 }
-.page__bd {
-    padding-bottom: 5px;
-}
+
 .page__bd_spacing {
     padding-left: 15px;
     padding-right: 15px;
@@ -51,15 +49,40 @@
 }
 
 .comment{
-	background-color: #ececec;
+  background-color: #ececec;
   padding: 2px 5px 2px 8px;
+  font-size:14px;
 }
 
 .comment_name{
-	color:#4266af;
+  color:#4266af;
   padding-right: 4px;
 }
 
 .comment_content{
 	color:rgba(0,0,0,0.6);
+}
+
+.item-avatar-xs image{
+  float: left;
+  width: 45rpx;
+  height: 45rpx;
+  margin-left:20rpx;
+  margin-right:40rpx;
+  box-sizing: border-box
+}
+.item-avatar-xs {
+    
+    margin-top:10rpx;
+    margin-bottom: 1rpx;
+    background:#fff;
+    height:100rpx;
+    position:relative;
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:flex;
+    -webkit-box-align:center;
+    -webkit-align-items:center;
+    align-items:center;
+
 }

@@ -246,9 +246,12 @@ function transEmojiStr(str){
       return array;
   }
   //这个地方需要调整
-  str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-  var eReg = new RegExp("[:]");
-  var array = str.split(eReg);
+ //使用 :js: 作为标记
+  str = str.replace(/\[([^\[\]]+)\]/g,':js:$1:js:')
+  
+  // var eReg = new RegExp("[:]");
+  var array = str.split(':js:');
+  
   for(var i = 0; i < array.length; i++){
     var ele = array[i];
     var emojiObj = {};
