@@ -1,15 +1,44 @@
 // pages/video/play.js
 var wxParse = require('../../wxParse/wxParse')
+var WXRequest = require('../../utils/util').WXRequest
 var app = getApp()
 Page({
   data:{
     url:"",
     backimage:"/images/jsjokeqrcode.jpg",
     jokes:[],
-    count:20
+    count:20,
+    oldvideoContext:null
   },
   onReachBottom: function (){
     
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '集思笑话，视频更欢乐',
+      path: '/pages/video/play',
+      success: function (res) {
+        WXRequest({
+          url: 'https://jsjoke.net/api/share',
+          method: 'post',
+        })
+        // 分享成功
+      },
+      fail: function (res) {
+        // 分享失败
+      }
+    }
+  },
+  playvideo: function (e) {
+ 
+    var id = e.currentTarget.id
+    var videoContext = wx.createVideoContext(id) 
+    
+    if (this.data.oldvideoContext && this.data.oldvideoContext.domId != videoContext.domId) {
+      
+      this.data.oldvideoContext.pause()
+    }
+    this.data.oldvideoContext = videoContext
   },
   bindcomment: function (e) {
     var id = e.currentTarget.dataset.id
@@ -102,7 +131,14 @@ Page({
     })
   },
   onLoad:function(options){
-    
+    var that = this
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(
+      function (userInfo) { //success
+        //更新数据
+
+      }) // getUserInfo
+
     // 页面初始化 options为页面跳转所带来的参数
   },
   onReady:function(){

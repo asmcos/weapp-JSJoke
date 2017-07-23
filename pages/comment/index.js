@@ -118,6 +118,10 @@ Page({
       }
     })
   },
+  onShow: function (){
+    
+    this.onShareAppMessage ()
+  },
   onLoad: function (option) {
     console.log('onLoad')
 

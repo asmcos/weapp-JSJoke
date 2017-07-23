@@ -2,6 +2,7 @@
 //获取应用实例
 var wxParse = require('../../wxParse/wxParse')
 var WXRequest = require('../../utils/util').WXRequest
+var formatTime = require('../../utils/util').formatTime
 var app = getApp()
 Page({
   data: {
@@ -16,6 +17,17 @@ Page({
       title: '我收集的笑话，这个可以笑一年',
       path: '/pages/index/index',
       success: function(res) {
+        // console.log(res)
+        if (res.shareTickets){
+          // 如果用户从群里进来
+          // 带有群信息
+          wx.getShareInfo({
+            shareTicket: res.shareTickets[0],
+            success: function (res){
+              console.log(res)
+            }
+          })
+        } // res.shareTickets
         WXRequest({
           url:'https://jsjoke.net/api/share',
           method:'post',
@@ -41,6 +53,8 @@ Page({
           } else if (res.data[i].author[0].avatar.slice(0,4) != 'http') {
                res.data[i].author[0].avatar = 'https://jsjoke.net' + res.data[i].author[0].avatar
           }
+          
+          // res.data[i].createdate = Date(res.data[i].createdate)
           wxParse.wxParse('reply' + i,'html',res.data[i].content,that);
           if (i === res.data.length - 1 ){
             wxParse.wxParseTemArray('replyTemArray','reply',res.data.length,that) 
@@ -202,6 +216,9 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     this.wxParseInit()
+    wx.showShareMenu({
+      withShareTicket:true
+    })
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(

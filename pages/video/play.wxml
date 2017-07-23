@@ -16,15 +16,14 @@
                     <!-- jokes content -->
                     <view style="margin-top:10px; margin-bottom:10px; line-height:150%;font-size:16px;">
                       <template is="wxParse" data="{{wxParseData:item}}"/>
-                      <video src="{{jokes[index].videourl}}" poster="{{jokes[index].videourl}}.jpg"> </video>
+                      <video src="{{jokes[index].videourl}}" poster="{{jokes[index].videourl}}.jpg" bindplay="playvideo" id="video{{index}}"> </video>
                     </view> 
 
 
                       <view class="weui-form-preview__ft" wx:if="{{jokes[index].comments}}" style="font-size:13px;">
                        <navigator  data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindjoke">
-                       👍  {{jokes[index].joke}}</navigator>
-                       <navigator data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindcomment"><image style="width:24px;height:24px;margin-top:12px;" src="/images/comment.png"></image></navigator>
-                        <navigator data-id="{{jokes[index]._id}}"  data-index="{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindunjoke">👎 {{jokes[index].unjoke}}</navigator>
+                       <image style="width:20px;height:20px;margin-top:10px;" src="/images/ok.png"></image>  {{jokes[index].joke}}</navigator>
+                       <navigator data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindcomment"><image style="width:20px;height:20px;margin-top:10px;" src="/images/comment.png"></image></navigator>
                      
                      </view> <!-- preview__ft -->
 

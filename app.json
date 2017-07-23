@@ -4,6 +4,7 @@
     "pages/comment/index",
     "pages/my/my",
     "pages/newjoke/newjoke",
+    "pages/newjoke/newjokevideo",
     "pages/find/find",
     "pages/sort/user",
     "pages/video/play",
@@ -13,8 +14,8 @@
     "selectedColor":"#3cc51f",
     "list":[{
       "pagePath":"pages/index/index",
-      "iconPath":"/images/graycomment.png",
-      "selectedIconPath":"/images/comment.png",
+      "iconPath":"/images/graymain.png",
+      "selectedIconPath":"/images/main.png",
       "text":"Top20"
     },
     {

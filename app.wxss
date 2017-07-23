@@ -86,3 +86,6 @@
     align-items:center;
 
 }
+video {
+  width:100%;
+}
