@@ -10,7 +10,8 @@ Page({
     count:20,
     jokes:{},
     contents:{},
-    userInfo: {}
+    userInfo: {},
+    oldvideoContext:null
   },
   onShareAppMessage: function () {
     return {
@@ -45,7 +46,7 @@ Page({
     that.data.count=20
     //调用应用实例的方法获取全局数据
     wx.request({
-      url:'https://jsjoke.net/api/jokes?limit=' + 20,
+      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 20,
       success: function (res){
         for (let i=0 ; i<res.data.length; i++){
           if (!res.data[i].author[0].avatar){
@@ -80,7 +81,7 @@ Page({
     //调用应用实例的方法获取全局数据
     that.data.count = 20
     wx.request({
-      url:'https://jsjoke.net/api/jokes?limit=' + 20,
+      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 20,
       success: function (res){
         for (let i=0 ; i<res.data.length; i++){
           if (!res.data[i].author[0].avatar){
@@ -119,10 +120,10 @@ Page({
     var id = e.currentTarget.dataset.id
     var index = e.currentTarget.dataset.index
     var that = this
-
     if (app.setJoke(id + 'joke')){
       return ;
     }
+
     wx.request({
       url:'https://jsjoke.net/api/jokes/' + id + '?joke=1',
       success: function (res){
@@ -134,26 +135,7 @@ Page({
       }
     })
   },
-  
-  bindunjoke: function(e) {
-    var id = e.currentTarget.dataset.id
-    var index = e.currentTarget.dataset.index
-    var that = this
 
-    if (app.setJoke(id + 'unjoke')){
-      return ;
-    }
-    wx.request({
-      url:'https://jsjoke.net/api/jokes/' + id + '?unjoke=1',
-      success: function (res){
-        that.data.jokes[index].unjoke = res.data.unjoke
-        that.setData({
-          jokes:that.data.jokes
-        })
-        
-      }
-    })
-  },
   getusefromserver: function(e){
     wx.switchTab({
       url: '/pages/my/my',
@@ -170,6 +152,17 @@ Page({
   },
   onReady: function () {
 
+  },
+  playvideo: function (e) {
+
+    var id = e.currentTarget.id
+    var videoContext = wx.createVideoContext(id)
+
+    if (this.data.oldvideoContext && this.data.oldvideoContext.domId != videoContext.domId) {
+
+      this.data.oldvideoContext.pause()
+    }
+    this.data.oldvideoContext = videoContext
   },
   lower: function() {
    // console.log(e)
@@ -189,7 +182,7 @@ Page({
     //调用应用实例的方法获取全局数据
     that.data.count += 20
     wx.request({
-      url:'https://jsjoke.net/api/jokes?limit=' + 20 + '&skip=' + old,
+      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 20 + '&skip=' + old,
       success: function (res){
         for (let i=0 ; i<res.data.length; i++){
           if (!res.data[i].author[0].avatar){

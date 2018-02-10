@@ -11,23 +11,23 @@
     "pages/logs/logs"
   ],
   "tabBar":{
-    "selectedColor":"#3cc51f",
+    "selectedColor":"#ffcf00",
     "list":[{
       "pagePath":"pages/index/index",
-      "iconPath":"/images/graymain.png",
-      "selectedIconPath":"/images/main.png",
+      "iconPath":"/images/icon_message_normal.png",
+      "selectedIconPath":"/images/icon_message_active.png",
       "text":"Top20"
     },
     {
       "pagePath":"pages/find/find",
-      "iconPath":"/images/grayfind.png",
-      "selectedIconPath":"/images/find.png",
+      "iconPath":"/images/icon_find_normal.png",
+      "selectedIconPath":"/images/icon_find_active.png",
       "text":"发现"
     },
     {
       "pagePath":"pages/my/my",
-      "iconPath":"/images/mine.png",
-      "selectedIconPath":"/images/mine_2.png",
+      "iconPath":"/images/icon_my_normal.png",
+      "selectedIconPath":"/images/icon_my_active.png",
       "text":"我的"
     }]
 

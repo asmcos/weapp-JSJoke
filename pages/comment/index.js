@@ -5,8 +5,7 @@ var WXRequest = require('../../utils/util').WXRequest
 var app = getApp()
 Page({
   data: {
-    showloading: 1,
-    showmore: 0,
+
     jokes:[],
     comments:[],
     inputval:"",
@@ -17,13 +16,10 @@ Page({
   },
   onShareAppMessage: function () {
     var that = this
-    var isVideo = ""
-    if (that.data.video){
-      isVideo="&video=1"
-    }
+
     return {
       title: '我收集的笑话，这个可以笑一年',
-      path: '/pages/comment/index?id='+that.data.id + isVideo,
+      path: '/pages/comment/index?id='+that.data.id,
       success: function(res) {
          WXRequest({
           url:'https://jsjoke.net/api/share',
@@ -56,23 +52,7 @@ Page({
       }
     })
   },
-  bindunjoke: function(e) {
-    var id = e.currentTarget.dataset.id
-    var index = e.currentTarget.dataset.index
-    var that = this
-    if (app.setJoke(id + 'unjoke')){
-      return ;
-    }
-    wx.request({
-      url:'https://jsjoke.net/api/jokes/' + id + '?unjoke=1',
-      success: function (res){
-        that.data.jokes[index].unjoke = res.data.unjoke
-        that.setData({
-          jokes:that.data.jokes
-        }) 
-      }
-    })
-  },
+ 
   goHome:function (e){
     console.log('goHome')
     wx.switchTab({
@@ -126,14 +106,10 @@ Page({
     console.log('onLoad')
 
     var id = option.id
-    var video = option.video
     var that = this
     that.data.id = id
     //调用应用实例的方法获取全局数据
 
-    that.setData({
-      video: video
-    })
     app.getUserInfo(
       function(userInfo){ //success
       //更新数据
@@ -172,7 +148,6 @@ Page({
         }
         that.setData({
           jokes:data,
-          showloading: 0
         })
 
         wx.request({

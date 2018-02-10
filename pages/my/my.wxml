@@ -35,47 +35,47 @@
         <view class="page__desc">欢乐人生，由自己</view>
     </view>
 
-<view class="page__bd"  wx:for="{{replyTemArray}}" wx:for-index="index" wx:key="">
-  <view class="weui-cells weui-cells_after-title" >
-            <view class="weui-cell" style="align-items:flex-start;padding:5px">
-                <view class="weui-cell__hd" style="position: relative;margin-left:2px;margin-right:10px; ">
-                    <image src="{{jokes[index].author[0].avatar}}" style="width: 40px; height: 40px; display: block"/>
-                    
-                </view>
-                <view class="weui-cell__bd">
-                    <view>{{jokes[index].author[0].nickname||jokes[index].author[0].username}}</view>
-                    <view style="font-size: 13px;color: #888888;">{{jokes[index].createdate}}</view>
-                    <!-- jokes content -->
-                    <view style="margin-top:10px; margin-bottom:10px; line-height:150%;font-size:16px;">
-                      <template is="wxParse" data="{{wxParseData:item}}"/>
-                      <block wx:if="{{jokes[index].videourl}}">
-                       <video src="{{jokes[index].videourl}}" poster="{{jokes[index].videourl}}.jpg"> </video>
+ <view class="jokeContainer">
+    <view class="jokeItem" wx:for="{{jokes}}" wx:for-index="index" wx:key="">
+      <view class="jokeAuthor">
+        <image class="jokeAuthorImg" src="{{item.author[0].avatar}}" background-size="cover"></image>
+        <view class="jokeAuthorRight">
+          <text class="jokeAuthorName">{{item.author[0].nickname||item.author[0].username}}</text>
+          <text class="jokeTime">{{item.createdate}}</text>
+        </view>
+         <image src="/images/del.png" style="width:24px;height:24px;" bindtap="del" data-id="{{item._id}}" ></image>
+      </view>
+
+      <view class="jokeCont">
+        <template is="wxParse" data="{{wxParseData:replyTemArray[index]}}"/>
+        <block wx:if="{{item.videourl}}">
+                       <video src="{{item.videourl}}" poster="{{jokes[index].videourl}}.jpg"> </video>
                       </block>
-                    </view> 
+      </view>
 
+      <view class="operateBlock" wx:if="{{item.comments}}">
+        <view class="operateItem" data-id="{{item._id}}" data-index = "{{index}}" bindtap="bindcomment" >
+          <image class="replayIcon" src="/images/icon_reply.png" style="height:20px;"></image>
+          <text class="num">{{item.comments.length}}</text>
+        </view>
+        <view class="operateItem" data-id="{{item._id}}" data-index = "{{index}}" bindtap="bindjoke">
+          <image class="followIcon" src="/images/icon_follow_normal.png"   style="height:20px;"></image>
+          <text class="num" >{{item.joke}}</text>
+        </view>
+      
+      </view> <!--operateBlock-->
 
-                      <view class="weui-form-preview__ft" wx:if="{{jokes[index].comments}}" style="font-size:13px;">
-                        <navigator  data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindjoke">
-                       <image style="width:20px;height:20px;margin-top:10px;" src="/images/ok.png"></image>  {{jokes[index].joke}}</navigator>
-                       <navigator data-id="{{jokes[index]._id}}" data-index = "{{index}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindcomment"><image style="width:20px;height:20px;margin-top:10px;" src="/images/comment.png"></image></navigator>
-                     
-                     </view> <!-- preview__ft -->
+      <view class="reply" wx:if="{{item.comments.length}}">
+        <view class="replyItem" wx:for="{{item.comments}}" wx:for-index="cinx" wx:for-item="c" wx:key="" >
+          <text class="replyName">{{c.author.nickname||c.author.username}} : </text>
+          <text class="replyCont">{{c.content}}</text>
+        </view>
+        
+      </view> 
 
-                     <!--comment-->
-                     <view wx:for="{{jokes[index].comments}}" wx:for-index="cinx" wx:for-item="c" wx:key="" >
-                     <view class="triangle-up" style="margin-left:15px;" wx:if="{{cinx===0}}"></view>
-                     <view class="comment"> <font class="comment_name">{{c.author.nickname||c.author.username}}:</font><font class="comment_contents">{{c.content}}</font></view>
-                     </view>
-                     <view style="margin-bottom:15px;"></view>
-                    
-                    <!--comment end -->
+      <view class="line"></view>
+    </view>
+</view>
 
-                </view><!--weui-cell__bd-->
-                <image src="/images/del.png" style="width:24px;height:24px;" bindtap="del" data-id="{{jokes[index]._id}}"></image>
-            </view><!--weui-cell-->
-       
-   </view> <!--  weui-cells weui-cells_after-title-->
-  
-  </view> <!--page_bd for end-->
 
 </view> <!--page-->

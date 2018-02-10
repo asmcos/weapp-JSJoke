@@ -8,11 +8,13 @@
   justify-content: space-between;
   padding: 20rpx 0;
   box-sizing: border-box;
+  width:100%;
 } 
 .page{
-    background-color: #F8F8F8;
-    font-size: 16px;
-    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  width:100%;
+  background-color: #F8F8F8;
+  font-size: 16px;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
 .page__hd {
     padding: 40px;
@@ -88,4 +90,174 @@
 }
 video {
   width:100%;
+}
+
+
+/**index.wxss**/
+.userinfo {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 192rpx;
+  height: 192rpx;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 12rpx solid #fff;
+}
+
+.userinfo-nickname {
+  color: #333;
+  font-size: 42rpx;
+  padding: 22rpx 0 42rpx;
+}
+.jokeCout {
+  display:block;
+}
+
+.jokeContainer {
+  background:#fff;
+}
+/*joke head box*/
+.userInfo{
+  width: 100%;
+  position: relative
+}
+.jokeHead{
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+.jokeHead .jokeHeadText{
+  width: 199rpx;
+  position: absolute;
+  left: 50%;
+  top: 70rpx;
+  margin-left: -99.5rpx;
+}
+.jokeUserBox{
+  width: 100%;
+  /*background-color: rgba(0, 0, 0, 0.5);*/
+  position: relative;
+  /*top: 204rpx;*/
+  margin-top: -108rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+/*joke Item*/
+.jokeItem{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40rpx 30rpx 30rpx;
+}
+.jokeAuthor{
+  display: flex;
+  margin-bottom: 30rpx;
+}
+.jokeAuthor .jokeAuthorImg{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 6rpx;
+}
+.jokeAuthor .jokeAuthorRight{
+  flex: 1;
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.jokeAuthor .jokeAuthorRight .jokeAuthorName{
+  padding-bottom: 10rpx;
+  color: #5890ff;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.jokeAuthor .jokeAuthorRight .jokeTime{
+  color: #9a9a9a;
+  font-size: 28rpx;
+}
+.jokeAuthor .delBtn{
+  width: 24rpx;
+  height: 24rpx;
+}
+.jokeCont .jokeText{
+  font-size: 34rpx;
+  color: #333;
+  line-height: 48rpx;
+}
+.jokeCont .jokeImg{
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.operateBlock{
+  width: 100%;
+  padding: 30rpx 0 20rpx;
+  display: flex;
+}
+.operateBlock .operateItem{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.operateBlock .operateItem .num{
+  padding-left: 15rpx;
+  color: #9a9a9a;
+}
+.operateBlock .operateItem:first-of-type{
+  border-right: 1px solid #e6e6e6;
+}
+.operateBlock .operateItem .replayIcon{
+  width: 38rpx;
+}
+.operateBlock .operateItem .followIcon{
+  width: 40rpx;
+}
+.operateBlock .operateItemActive .num{
+  color: gold;
+}
+.reply{
+  background-color: #f5f5f5;
+  padding: 10rpx 30rpx 20rpx;
+  position: relative;
+}
+.reply:after{
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  border-bottom: 20rpx solid #f5f5f5;
+  left: 60rpx;
+  top: -15rpx;
+  z-index: 0;
+}
+.replyItem{
+  line-height: 40rpx;
+  margin:10rpx 0 0;
+}
+.replyItem .replyName{
+  color: #5890ff;
+  font-size: 30rpx;
+}
+.replyItem .replyCont{
+  color: #555555;
+  font-size: 30rpx;
+}
+.line{
+  width: 100%;
+  height: 1px;
+  background-color: #e6e6e6;
+  margin-top: 30rpx;
+}
+.jokeItem:last-of-type .line{
+  display: none;
 }

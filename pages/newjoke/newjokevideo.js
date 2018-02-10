@@ -38,7 +38,7 @@ Page({
       data: { content: content,videourl:videourl },
       success: function (res) {
         //console.log(res)
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../video/play'
         })
       }
