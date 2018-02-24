@@ -22,7 +22,7 @@
         </view>
       </view>
 
-      <view class="jokeCont">
+      <view class="jokeCont" bindtap="bindclipboard" data-index="{{index}}">
         <template is="wxParse" data="{{wxParseData:replyTemArray[index]}}"/>
         <block wx:if="{{item.videourl}}">
                        <video src="{{item.videourl}}" poster="{{jokes[index].videourl}}.jpg" bindplay="playvideo" id="video{{index}}"> </video>
@@ -66,7 +66,7 @@
 
       
        <view class="weui-footer" style="height:30px;"> 
-        <view class="weui-footer__text">2017 @集思笑话</view> 
+        <view class="weui-footer__text">2018 @集思笑话</view> 
        </view>
 
      </view>

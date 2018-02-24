@@ -11,7 +11,7 @@
         </view>
       </view>
 
-      <view class="jokeCont">
+      <view class="jokeCont" >
         <template is="wxParse" data="{{wxParseData:replyTemArray[index]}}"/>
         <block wx:if="{{item.videourl}}">
                        <video src="{{item.videourl}}" poster="{{jokes[index].videourl}}.jpg"> </video>
@@ -21,7 +21,7 @@
       <view class="operateBlock" wx:if="{{item.comments}}">
         <view class="operateItem" data-id="{{item._id}}" data-index = "{{index}}" bindtap="bindcomment" >
           <image class="replayIcon" src="/images/icon_reply.png"  mode="widthFix"></image>
-          <text class="num">{{item.comments.length}}</text>
+          <text class="num">{{comments.length}}</text>
         </view>
         <view class="operateItem" data-id="{{item._id}}" data-index = "{{index}}" bindtap="bindjoke">
           <image class="followIcon" src="/images/icon_follow_normal.png"  mode="widthFix" ></image>
@@ -47,7 +47,7 @@
        
        <view class="weui-footer__text">扫描下面二维码看更多笑话</view>
        <image src="/images/jsjokeqrcode.jpg" style="width:60%;" mode="widthFix"> </image>
-       <view class="weui-footer__text">2017 @集思笑话</view> 
+       <view class="weui-footer__text">2018 @集思笑话</view> 
        <view class="weui-footer__text">代码开放asmcos@github</view> 
        <view style="height:100px;"> </view>
      </view>

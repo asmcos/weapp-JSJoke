@@ -7,7 +7,7 @@ var app = getApp()
 Page({
   data: {
     showloading: 1,
-    count:20,
+    count:40,
     jokes:{},
     contents:{},
     userInfo: {},
@@ -40,13 +40,32 @@ Page({
       }
     }
   },
+  bindclipboard: function (e){
+    var index = e.currentTarget.dataset.index
+    var  that = this 
+    console.log(this.data.jokes[index].content)
+    wx.showActionSheet({
+      itemList: ['复制'],
+      success: function (res) {
+        wx.setClipboardData({
+          data: that.data.jokes[index].content,
+          success: function (res) {
+            
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
   onShow: function (){
     var that = this
     
-    that.data.count=20
+    that.data.count=40
     //调用应用实例的方法获取全局数据
     wx.request({
-      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 20,
+      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 40,
       success: function (res){
         for (let i=0 ; i<res.data.length; i++){
           if (!res.data[i].author[0].avatar){
@@ -79,9 +98,9 @@ Page({
           duration:3000
         })
     //调用应用实例的方法获取全局数据
-    that.data.count = 20
+    that.data.count = 40
     wx.request({
-      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 20,
+      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 40,
       success: function (res){
         for (let i=0 ; i<res.data.length; i++){
           if (!res.data[i].author[0].avatar){
@@ -102,7 +121,10 @@ Page({
         
       }
     })
-    
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
   onReachBottom: function (){
     console.log('onReachBottom')
@@ -182,7 +204,7 @@ Page({
     //调用应用实例的方法获取全局数据
     that.data.count += 20
     wx.request({
-      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 20 + '&skip=' + old,
+      url:'https://jsjoke.net/api/jokes?video=2&limit=' + 40 + '&skip=' + old,
       success: function (res){
         for (let i=0 ; i<res.data.length; i++){
           if (!res.data[i].author[0].avatar){
@@ -205,6 +227,10 @@ Page({
       }
     })
 
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
   onLoad: function () {
     console.log('onLoad')
