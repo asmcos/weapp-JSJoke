@@ -43,12 +43,12 @@ Page({
   bindclipboard: function (e){
     var index = e.currentTarget.dataset.index
     var  that = this 
-    console.log(this.data.jokes[index].content)
+    console.log(this.data.jokes[index].content.replace(/<\/?.+?>/g, ""))
     wx.showActionSheet({
       itemList: ['复制'],
       success: function (res) {
         wx.setClipboardData({
-          data: that.data.jokes[index].content,
+          data: that.data.jokes[index].content.replace(/<\/?.+?>/g, ""),
           success: function (res) {
             
           }
